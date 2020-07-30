@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+	<!-- 3.实体映射文件的引入 -->
+	<mappers>
+		<mapper resource="classpath:mapper/Book.xml"/>
+		<mapper resource="classpath:mapper/StoreHouse.xml"/>
+		<mapper resource="classpath:mapper/Account.xml"/>
+		<mapper resource="classpath:mapper/User.xml"/>
+	</mappers>
+	
+</configuration>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-4.3.xsd
+     http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+     http://www.springframework.org/schema/mvc
+     http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+">
+    <!-- spring注解驱动 -->
+    <context:annotation-config></context:annotation-config>
+    <!-- 组件扫描的范围 -->
+    <context:component-scan base-package="com.lianyikai.bookstore"></context:component-scan>
+
+
+    <!-- mvc注解驱动 -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+    <!-- springmvc视图处理器 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+        <property name="prefix" value="/" ></property>
+        <property name="suffix" value=".jsp" ></property>
+    </bean>
+    <!--开通静态资源的访问方式一
+    <mvc:default-servlet-handler />-->
+
+    <!--方式二-->
+    <mvc:resources location="/bootstrap/" mapping="/bootstrap/**"/>
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+
+    <!-- 当需要引入一个properties文件的时候 -->
+    <context:property-placeholder location="classpath:myconn.properties" />
+    <!--若需要引入多个properties文件
+        <bean id="sfg" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="locations">
+                <array>
+                    <value>classpath:myconn.properties</value>
+                     <value>... </value>
+                </array>
+            </property>
+        </bean>
+    -->
+    <!-- 配置数据库连接池 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${mydriver}" ></property>
+        <property name="url" value="${myurl}" ></property>
+        <property name="username" value="${myuser}" ></property>
+        <property name="password" value="${mypwd}" ></property>
+    </bean>
+
+    <!-- 连接工厂 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"  >
+        <property name="dataSource" ref="dataSource" ></property>
+        <!-- 引入mybatis配置文件
+        <property name="configLocation" value="classpath:mybatis_config.xml" ></property> -->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+        <!-- 引入实体映射文件
+        <property name="mapperLocations"  >
+            <array>
+                <value>classpath:cd/sz/gl/pojo/Emp.xml</value>
+                <value>classpath:cd/sz/gl/pojo/Account.xml</value>
+            </array>
+        </property> -->
+
+    </bean>
+
+    <!--Mybatis的Mapper文件识别-->
+    <bean id="configurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" ></property>
+        <property name="basePackage" value="com.lianyikai.bookstore.dao"/>
+    </bean>
+
+    <!-- 加入拦截器配置-->
+    <!--此时进入mvc的所有请求都会经过拦截器 :第一种写法
+    <bean id="checklogin" class="com.lianyikai.bookstore.interceptor.LoginInterceptor"></bean>
+    <mvc:interceptors >
+        <ref bean="checklogin"/>
+    </mvc:interceptors>
+
+    <mvc:interceptors>  第二种写法
+        <bean class="com.lianyikai.bookstore.interceptor.LoginInterceptor"></bean>
+    </mvc:interceptors>-->
+    <!--第三种写法 自定义拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/><!--拦截所有请求 可以配置多个拦截器-->
+            <!--有些请求不需要通过拦截器的通过下面跳过-->
+            <mvc:exclude-mapping path="/f"/>
+            <bean class="com.lianyikai.bookstore.interceptor.LoginInterceptor"></bean>
+        </mvc:interceptor>
+        
+    </mvc:interceptors>
+
+    <!--文件上传对象-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+     <property name="defaultEncoding" value="utf-8"></property>
+        <property name="maxUploadSize" value="10000000"></property>
+    </bean>
+
+</beans>

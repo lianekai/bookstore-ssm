@@ -1,0 +1,9 @@
+
+|
+java:S1488 "_Immediately return this expression instead of assigning it to the temporary variable "acclist".(›“‹8ÄÌøÔ¹.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(¯Øãì8‰ËªÓ¹.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(¨Â¡8¢ÔÒ¹.
+l
+java:S4488"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(©ŞºÏûÿÿÿÿ8ÈùùÍ¹.
+g
+java:S4488$"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(å˜‚ç8ùûì×¹.

@@ -1,0 +1,27 @@
+
+E
+java:S11487"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8·¼ğÄ¹.
+a
+java:S1128"DRemove this unused import 'com.lianyikai.bookstore.pojo.StoreHouse'.(öçªë8˜ÄòÊ¹.
+W
+java:S11413"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8·¼ğÄ¹.
+U	java:S106+"9Replace this use of System.out or System.err by a logger.(éö§ğ8‹‘’±¹.
+U	java:S106)"9Replace this use of System.out or System.err by a logger.(±îÔ8é•°¹.
+s
+java:S1128"QRemove this unused import 'org.springframework.format.annotation.DateTimeFormat'.(‡ˆôƒøÿÿÿÿ8¬½çÂ¹.
+k
+java:S20952"NUse try-with-resources or close this "FileOutputStream" in a "finally" clause.(†ïŒÌ8¤¦œÄ¹.
+U	java:S106/"9Replace this use of System.out or System.err by a logger.(»¶öˆ8Âÿ²Å¹.
+j
+java:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ò»›€ıÿÿÿÿ8¹½ß©¸.
+E
+java:S1148:"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¤¦œÄ¹.
+Z	java:S106*"9Replace this use of System.out or System.err by a logger.(»äùıÿÿÿÿ8Û—°¹.
+H
+java:S10751"&Remove this hard-coded path-delimiter.(‹Ññşÿÿÿÿ8¤¦œÄ¹.
+j
+java:S4488""HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(’µûøÿÿÿÿ8‡Æ³«¹.
+d
+java:S4488@"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ÉµË08Ü…éÉ¹.
+l
+java:S4488'"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(Ñúşÿÿÿÿ8Í °«¹.
